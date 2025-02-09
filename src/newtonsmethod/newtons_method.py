@@ -14,6 +14,7 @@ def newton_raphson(f, J, x0, tol, max_iter):
         else:
             return x0
     else:    
+        x0 = np.array(x0, dtype = float)
         while np.abs(f(x0)[0]) > tol:
             delta_x = -np.linalg.inv(np.array(J(x0))) @ f(x0)
             x0 += delta_x
