@@ -10,15 +10,14 @@ def J1(x):
 
 def f2(x):
     return np.array([
-        [2*x[0] + x[1] - 5,
-         x[0] - x[1]] - 1
+        2*x[0] + x[1] - 5,
+         x[0] - x[1] - 1
     ])
 def J2(x):
     return np.array([
         [2, 1],
         [1, -1]
     ])
-
 
 def test_newtons_method():
     assert np.isclose(nm.newton_raphson(f1, J1, 50, 1e-10, 50), 3.0)
