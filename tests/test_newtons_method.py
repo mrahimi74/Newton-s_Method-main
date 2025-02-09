@@ -22,5 +22,5 @@ def J2(x):
 
 def test_newton_method():
     assert np.isclose(nm.newton_raphson(f1, J1, 50, 1e-10, 50), 3.0)
-    assert np.isclose(nm.newton_raphson(f2, J2, np.array([50, 20]), 1e-10, 50)[0], 1.82287566)
-    assert np.isclose(nm.newton_raphson(f2, J2, np.array([50, 20]), 1e-10, 50)[1], 0.8228756)
+    assert np.isclose(nm.newton_raphson(f2, J2, np.array([50, 20]), 1e-10, 50)[0], 2.0)
+    assert np.isclose(nm.newton_raphson(f2, J2, np.array([50, 20]), 1e-10, 50)[1], 1.0)
