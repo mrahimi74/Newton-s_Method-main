@@ -19,8 +19,8 @@ def newton_raphson_scalar(f, J, x0, tol, max_iter):
         x0 += compute_update_scalar(f, J, x0)
         iter_count += 1
         if iter_count > max_iter:
-            print("Solution did not converge within max iterations.")
-            return None
+            raise ValueError("Solution did not converge within max iterations.")
+            Break
     return x0
 
 def newton_raphson_vector(f, J, x0, tol, max_iter):
@@ -31,8 +31,8 @@ def newton_raphson_vector(f, J, x0, tol, max_iter):
         x0 += compute_update_vector(f, J, x0)
         iter_count += 1
         if iter_count > max_iter:
-            print("Solution did not converge within max iterations.")
-            return None
+            raise ValueError("Solution did not converge within max iterations.")
+            Break
     return x0
 
 def newton(f, J, x0, tol, max_iter):

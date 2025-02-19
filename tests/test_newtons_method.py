@@ -52,3 +52,23 @@ def test_newton_raphson():
     x0_vector = np.array([1.0, 1.0])
     expected_root = np.array([1.0, 1.0])
     assert np.allclose(nm.newton(f_vector, J_vector, x0_vector, 1e-11, 300), expected_root)
+
+def test_newton_raphson_scalar_no_convergence():
+    f = lambda x: x**2 - 4
+    J = lambda x: 2*x
+    x0 = 1000.0  # A large initial guess to prevent quick convergence
+    tol = 1e-6
+    max_iter = 2  # Low iteration count to force non-convergence
+    with pytest.raises(ValueError, match = "Solution did not converge within max iterations."):
+        nm.newton_raphson_scalar(f, J, x0, tol, max_iter)
+
+def test_newton_raphson_vector_no_convergence():
+    """Test vector Newton-Raphson method when it does not converge."""
+    f = lambda x: np.array([x[0]**2 + x[1] - 2, x[0] + x[1]**2 - 2])
+    J = lambda x: np.array([[2*x[0], 1], [1, 2*x[1]]])
+    x0 = np.array([1000.0, 1000.0])  # Large initial values to delay convergence
+    tol = 1e-6
+    max_iter = 2  # Low iteration count to force non-convergence
+    
+    with pytest.raises(ValueError, match = "Solution did not converge within max iterations."):
+        nm.newton_raphson_vector(f, J, x0, tol, max_iter)
